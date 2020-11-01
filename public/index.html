@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Exemplo de aplicação Node/Express</title>
+</head>
+<body>   
+    <h1>Bem vindo (a)!</h1>
+    <h3>Feito por: Vinícius Brito Bastos Antunes (COMP-22)</h3>
+    <p id="intro">Neste site, permitiremos que o usuário, você, faça upload de arquivos e consiga <br>
+    acessá-los acrescentando <i>/nome_do_arquivo.extensão_do_arquivo</i> ao final da URL <br>
+	desta página. Além disso, há alguns bônus.</p>
+	<form action='upload/success' method='post' encType="multipart/form-data">
+	    <input type="file" multiple name="file" />
+	    <input type='submit' value='Fazer upload' />
+	</form>
+
+	<p> Bônus 1: Calculadora de peso </p>
+	<form action='calculate' method='get' encType="multipart/form-data">
+	    <input id="weight" value="Massa na Terra"/>
+	    <input id="planet" value="Planeta do sistema solar" />
+	    <input type='submit' value='Calcular' />
+	</form>
+	<p> Bônus 2: <i>Text switcher</i><br>
+	Existe um arquivo JSON neste projeto. Clique no botão abaixo para <br>
+	substituir o conteúdo do parágrafo introdutório pelo que está no arquivo.</p>
+</body>
+</html>
