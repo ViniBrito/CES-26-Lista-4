@@ -3,26 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <title>Exemplo de aplicação Node/Express</title>
+    <style type="text/css">
+    	#imcb{
+    		background-color: #2D8428;
+    		border-radius: 5px;
+    		border-color: #2D8428;
+    	}
+    	#imcb:hover{
+    		background-color: #24A91D;
+    		border-color: #24A91D;
+    	}
+    	label{
+    		display: inline-block;
+    		width:200px;
+    		text-align: right;
+    	}
+    	button{
+    		background-color: cyan;
+    	}
+    	button:hover{
+    		background-color: lightblue;
+    	}
+    </style>
 </head>
 <body>   
     <h1>Bem vindo (a)!</h1>
     <h3>Feito por: Vinícius Brito Bastos Antunes (COMP-22)</h3>
-    <p id="intro">Neste site, permitiremos que o usuário, você, faça upload de arquivos e consiga <br>
-    acessá-los acrescentando <i>/nome_do_arquivo.extensão_do_arquivo</i> ao final da URL <br>
+    <p id="intro" style="width: 38%" align="justify">Neste site, permitiremos que o usuário, você, faça upload de arquivos e consiga
+    acessá-los acrescentando <i>/static/nome_do_arquivo.extensão_do_arquivo</i> ao final da URL
 	desta página. Além disso, há alguns bônus.</p>
 	<form action='upload/success' method='post' encType="multipart/form-data">
 	    <input type="file" multiple name="file" />
 	    <input type='submit' value='Fazer upload' />
 	</form>
 
-	<p> Bônus 1: Calculadora de peso </p>
-	<form action='calculate' method='get' encType="multipart/form-data">
-	    <input id="weight" value="Massa na Terra"/>
-	    <input id="planet" value="Planeta do sistema solar" />
-	    <input type='submit' value='Calcular' />
+	<p> Bônus 1: Calculadora de IMC </p>
+	<form action='calculate' style="border: 1.5px solid green; border-radius: 10px; background-color: lightgreen; width: 30%; padding: 10px; height: 80px" method='get' encType="multipart/form-data">
+	    <label for="weight"> Insira seu peso (massa em kg):</label> <input name="weight"/> <br>
+	    <label for="height"> Insira sua altura (em cm):</label> <input name="height"/> <br>
+	    <input id="imcb" style="position: relative; left: 80%; bottom: -20%" type='submit' value='Avaliar IMC' />
 	</form>
 	<p> Bônus 2: <i>Text switcher</i><br>
-	Existe um arquivo JSON neste projeto. Clique no botão abaixo para <br>
-	substituir o conteúdo do parágrafo introdutório pelo que está no arquivo.</p>
+	<p style="width: 38%" align="justify">Existe um arquivo JSON neste projeto. Clique no botão abaixo para	substituir o conteúdo do parágrafo introdutório pelo que está no arquivo.</p>
+	<script>
+		function change(){
+			var xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function() {
+				if (xhttp.readyState == 4 && xhttp.status == 200) {
+					document.getElementById("intro").innerHTML = http.responseText;
+				}
+			};
+			xhttp.open("GET", "package.json", true);
+			xhttp.send();
+		}
+	</script>
+	<button style="position: relative; left:10%; border-radius: 10px" onclick="change()">Modificar conteúdo do parágrafo inicial</button>
 </body>
 </html>
