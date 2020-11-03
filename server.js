@@ -48,5 +48,5 @@ app.get('/calculate', function(req, res){
     res.send(texto+botao);
 });
 
-app.listen(3000, () => console.log('App na porta 3000'));
+app.listen(3000, () => console.log('Aplicação funcional'));
 
