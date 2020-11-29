@@ -1,13 +1,14 @@
-// server.js
+// Importando pacotes necessários
 const express = require('express')
 	, app = express()
 	, multer = require('multer');
 
+// Definindo botão de retornar ao início
 const botao = "<br><br><button style='border-radius: 20px' onclick='history.back()'>Voltar à página inicial</button>";
 
-// cria uma instância do middleware configurada
+// Criando uma instância do middleware configurada
 // destination: lida com o destino
-// filenane: permite definir o nome do arquivo gravado
+// filename: permite definir o nome do arquivo gravado
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
 
@@ -21,19 +22,20 @@ const storage = multer.diskStorage({
     }
 });
 
-// utiliza a storage para configurar a instância do multer
+// Utilizando a storage para configurar a instância do multer
 const upload = multer({ storage });
-
+//Definindo rotas de acesso aos arquivos carregados
 app.use(express.static('public'));
 app.use('/static', express.static('uploads'));
 
-// continua do mesma forma
+// Definindo mensagem exibida após upload
 app.post('/upload/success', upload.array('file'), 
     (req, res) => {
         //const tempPath = __dirname+'\\'+req.file.path;
         res.send("Upload concluído com sucesso."+botao);
     });
 
+// Definindo rota de processamento dos dados no formulário do IMC
 app.get('/calculate', function(req, res){
     var texto = "<h1>Resultado da avaliação</h1>\nSeu IMC é ";
     var h = req.query.height/100;
@@ -48,5 +50,6 @@ app.get('/calculate', function(req, res){
     res.send(texto+botao);
 });
 
+// Conectando servidor à porta 3000
 app.listen(3000, () => console.log('Aplicação funcional'));
 
